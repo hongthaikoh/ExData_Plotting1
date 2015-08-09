@@ -32,14 +32,26 @@ rownames(twoDayData) <- 1:nrow(twoDayData)
 attach(twoDayData)
 
 ## Open PNG on screen graphic device
-png(filename = "plot1.png",
-    width = 480, height= 480,
+png(filename = "plot3.png",
+    width = 480, height = 480,
     units = "px", bg = "transparent")
 
-## Plot histogram
-hist(Global_active_power,
-     col = "red",
-     main = "Global Active Power",
-     xlab = "Global Active Power (kilowatts)",
-     breaks = 12, ylim = c(0, 1200))
+## Plot sub metering 1
+plot(DateTime, Sub_metering_1,
+     type = "l",
+     col = "black",
+     xlab = "", ylab = "Energy sub metering")
+
+## Add sub metering 2 line chart
+lines(DateTime, Sub_metering_2, col = "red")
+
+## Add sub metering 3 line chart
+lines(DateTime, Sub_metering_3, col = "blue")
+
+## Add legend description
+legend("topright",
+       col = c("black", "red", "blue"),
+       c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
+       lwd = 1)
 dev.off()
+

@@ -32,14 +32,13 @@ rownames(twoDayData) <- 1:nrow(twoDayData)
 attach(twoDayData)
 
 ## Open PNG on screen graphic device
-png(filename = "plot1.png",
-    width = 480, height= 480,
+png(filename = "plot2.png",
+    width = 480, height = 480,
     units = "px", bg = "transparent")
 
-## Plot histogram
-hist(Global_active_power,
-     col = "red",
-     main = "Global Active Power",
-     xlab = "Global Active Power (kilowatts)",
-     breaks = 12, ylim = c(0, 1200))
+## Plot line charts
+plot(DateTime, Global_active_power,
+     type = "l",
+     xlab = "",
+     ylab = "Global Active Power (kilowatts)")
 dev.off()

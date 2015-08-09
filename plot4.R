@@ -32,14 +32,46 @@ rownames(twoDayData) <- 1:nrow(twoDayData)
 attach(twoDayData)
 
 ## Open PNG on screen graphic device
-png(filename = "plot1.png",
-    width = 480, height= 480,
+png(filename = "plot4.png",
+    width = 480, height = 480,
     units = "px", bg = "transparent")
 
-## Plot histogram
-hist(Global_active_power,
-     col = "red",
-     main = "Global Active Power",
-     xlab = "Global Active Power (kilowatts)",
-     breaks = 12, ylim = c(0, 1200))
+## Create multi panel plotting window of 2 x 2
+par(mfrow = c(2,2))
+
+## Plot Top-left line chart
+plot(DateTime, Global_active_power,
+     type = "l",
+     xlab = "", ylab = "Global Active Power")
+
+## Plot Top-right line chart
+plot(DateTime, Voltage,
+     type = "l",
+     xlab = "datetime", ylab = "Voltage")
+
+## Plot Bottom-left line chart
+plot(DateTime, Sub_metering_1,
+     type = "l",
+     col = "black",
+     xlab = "", ylab = "Energy sub metering")
+lines(DateTime, Sub_metering_2, col = "red")
+lines(DateTime, Sub_metering_3, col = "blue")
+  # remove legend box of Bottom-left line chart by setting bty = n
+  legend("topright",
+        bty = "n",
+        col = c("black", "red", "blue"),
+        c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
+        lwd = 1)
+  
+## Plot Bottom-right line chart
+plot(DateTime, Global_reactive_power,
+     type = "l",
+     col = "black",
+     xlab = "datetime", ylab = colnames(twoDayData)[4])
+
 dev.off()
+
+
+
+
+## Plot
