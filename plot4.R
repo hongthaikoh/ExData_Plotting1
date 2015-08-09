@@ -70,8 +70,3 @@ plot(DateTime, Global_reactive_power,
      xlab = "datetime", ylab = colnames(twoDayData)[4])
 
 dev.off()
-
-
-
-
-## Plot
